@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.circle {
+  margin: 10px;
+  border: 4px solid red;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+#uh {
+  width: 150px;
+  height: 150px;
+  left: 909px;
+  top: 252px;
+}
