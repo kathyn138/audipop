@@ -7,6 +7,8 @@ class Board extends React.Component {
     this.state = {
       circles: []
     }
+    // this.randomNumGenerator = this.randomNumGenerator.bind(this);
+    // this.tick = this.tick.bind(this);
   }
 
   componentDidMount() {
@@ -14,6 +16,8 @@ class Board extends React.Component {
       () => this.tick(), 
       2000
     );
+    this.interval = setInterval(
+      () => this.untick(), 4000);
   }
 
   componentWillUnmount() {
@@ -21,22 +25,31 @@ class Board extends React.Component {
   }
   
   randomNumGenerator() {
-    Math.floor(Math.random * 6)
+    return Math.floor(Math.random() * Math.floor(6))
   }
 
   tick () {
-    let numCircles = this.randomNumGenerator();
-    let circlesArr = [];
-    let selectedCircle;
+    let circlePosition = this.randomNumGenerator();
+    console.log(circlePosition)
+    // let circlesArr = [];
+    // let selectedCircle;
     
-    for (let i = 0; i < numCircles; i++) {
-      selectedCircle = this.randomNumGenerator();
-      circlesArr.push(selectedCircle);
-    }
+    // for (let i = 0; i < numCircles; i++) {
+    //   selectedCircle = this.randomNumGenerator();
+    //   circlesArr.push(selectedCircle);
+    // }
 
     this.setState({
-      circles: [...this.state.circles, [...circlesArr]]
+      circles: [...this.state.circles, circlePosition]
     });
+  }
+
+  untick() {
+    let shiftArr = this.state.circles.filter(id => id !== this.state.circles[0])
+    this.setState({
+      circles: shiftArr
+    })
+
   }
   // need to pass in a sort of idx and not empty array in state
 
