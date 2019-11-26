@@ -17,63 +17,57 @@
     height: 100px;
 } */
 .circle-1 { 
-    position: relative;
-    left: 309px;
-    top: 152px;
+    position: absolute; 
+    /* left: 309px;
+    top: 152px; */
 
-    margin: 10px;
+    left: 40%;
+    top: 20%;
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
 .circle-2 {
-    position: relative;
-    left: 809px;
-    top: 30px;
+    position: absolute;
+    /* left: 809px;
+    top: 30px; */
 
-    margin: 10px;
+    left: 10%;
+    top: 40%;
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
 .circle-3 {
-    position: relative;
-    left: 309px;
-    top: 264px;
+    position: absolute;
+    right: 10%;
+    top: 40%; 
 
-    margin: 10px;
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
 .circle-4 {
-    position: relative;
-    left: 809px;
-    top: 145px;
+    position: absolute;
+    left: 20%;
+    top: 70%; 
 
-    margin: 10px;
+
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
-/* .circle-5 {
-    position: relative;
-    left: 181px; 
-    top: 152px;
+.circle-5 {
+    position: absolute;
+    right: 20%; 
+    top: 70%; 
 
-    margin: 10px;
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
     height: 100px;
-} */
-.board {
-    overflow: auto;
-    margin: 0 auto;
-    width: 75%;
-    min-height: 100vh
 }
