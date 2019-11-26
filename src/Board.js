@@ -1,12 +1,14 @@
 import React from 'react';
 import Circle from './Circle';
+import Score from './Score';
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       circles: [],
-      circlePositions: [1, 2, 3, 4, 2, 3, 1, 4, 2, 3, 1, 2, 3, 2, 4, 1, 2]
+      circlePositions: [1, 2, 3, 4, 2, 3, 1, 4, 2, 3, 1, 2, 3, 2, 4, 1, 2], 
+      score: 0
     }
     // this.randomNumGenerator = this.randomNumGenerator.bind(this);
     // this.tick = this.tick.bind(this);
@@ -18,7 +20,7 @@ class Board extends React.Component {
       1000
     );
     this.timerRemove = setInterval(
-      () => this.untick(), 2000);
+      () => this.autoUntick(), 2000);
   }
 
   componentWillUnmount() {
@@ -49,14 +51,21 @@ class Board extends React.Component {
     }
   }
 
-  untick() {
+  autoUntick() {
     if (this.state.circles.length > 0) {
       let shiftArr = this.state.circles.filter(id => id !== this.state.circles[0])
       this.setState({
         circles: shiftArr
       })
     }
+  }
 
+  userClick(clickedId) {
+    let shiftArr = this.state.circles.filter(id => id !== clickedId)
+    this.setState({
+      circles: shiftArr, 
+      score: this.state.score + 1
+    })
   }
   // need to pass in a sort of idx and not empty array in state
 
@@ -64,13 +73,13 @@ class Board extends React.Component {
     console.log(this.state.circlePositions)
     console.log('length', this.state.circlePositions.length)
     return (
-      <div className="board">
-        {this.state.circles.map(c => <Circle id={c} />)}
-      </div>
+      <React.Fragment>
+        <div className="board">
+          {this.state.circles.map(c => <Circle id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+        </div>
+        <Score score={this.state.score}/>
+      </React.Fragment>
     )
-    // return (
-    //   <Circle id="1"/>
-    // )
   }
 }
 

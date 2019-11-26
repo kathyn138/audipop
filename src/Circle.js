@@ -7,8 +7,14 @@ class Circle extends React.Component {
     this.state = {
       visiblity: true
     }
+    this.handleClick = this.handleClick.bind(this);
 
     // this.interval = null;
+  }
+
+  handleClick() {
+    this.props.click(this.props.id);
+    console.log('clicked');
   }
 
   // componentDidMount() {
@@ -21,7 +27,7 @@ class Circle extends React.Component {
 
   render() {
     return (
-      <div className={`circle-${this.props.id}`} ></div>
+      <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>{this.props.id}</div>
     )
   }
 }
