@@ -1,6 +1,7 @@
 import React from 'react';
 import Circle from './Circle';
 import Score from './Score';
+import Lives from './Lives';
 
 class Board extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class Board extends React.Component {
     this.state = {
       circles: [],
       circlePositions: [1, 2, 3, 4, 2, 3, 1, 4, 2, 3, 1, 2, 3, 2, 4, 1, 2], 
-      score: 0
+      score: 0, 
+      lives: 3
     }
     // this.randomNumGenerator = this.randomNumGenerator.bind(this);
     // this.tick = this.tick.bind(this);
@@ -42,7 +44,7 @@ class Board extends React.Component {
     //   selectedCircle = this.randomNumGenerator();
     //   circlesArr.push(selectedCircle);
     // }
-    if (this.state.circlePositions.length > 0) {
+    if (this.state.circlePositions.length > 0 && this.state.lives > 0) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
       this.setState({
         circles: [...this.state.circles, this.state.circlePositions[0]],
@@ -52,10 +54,11 @@ class Board extends React.Component {
   }
 
   autoUntick() {
-    if (this.state.circles.length > 0) {
+    if (this.state.circles.length > 0 && this.state.lives > 0) {
       let shiftArr = this.state.circles.filter(id => id !== this.state.circles[0])
       this.setState({
-        circles: shiftArr
+        circles: shiftArr, 
+        lives: this.state.lives - 1
       })
     }
   }
@@ -77,7 +80,8 @@ class Board extends React.Component {
         <div className="board">
           {this.state.circles.map(c => <Circle id={c} click={(clickedId) => this.userClick(clickedId)} />)}
         </div>
-        <Score score={this.state.score}/>
+        <Score score={this.state.score} />
+        <Lives lives={this.state.lives} />
       </React.Fragment>
     )
   }
