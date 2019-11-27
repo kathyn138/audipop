@@ -1,31 +1,33 @@
 import React from 'react';
 import Circle from './Circle';
-import Score from './Score';
-import Lives from './Lives';
 import './Board.css';
+import { CSSTransitionGroup } from 'react-transition-group';
+const uuid = require('uuid/v4');
 
-class Board extends React.Component {
+class Board extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      circles: [1, 2, 3, 4, 5],
+      circles: [],
       circlePositions: [1, 2, 3, 4, 2, 3, 1, 4, 2, 3, 1, 2, 3, 2, 4, 1, 2]
     }
+    this.tick = this.tick.bind(this);
+    this.autoUntick = this.autoUntick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.timerID = setInterval(
-  //     () => this.tick(),
-  //     1000
-  //   );
-  //   this.timerRemove = setInterval(
-  //     () => this.autoUntick(), 2000);
-  // }
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+    this.timerRemove = setInterval(
+      () => this.autoUntick(), 3000);
+  }
 
-  // componentWillUnmount() {
-  //   clearInterval(this.timerID);
-  //   clearInterval(this.timerRemove);
-  // }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+    clearInterval(this.timerRemove);
+  }
 
   tick() {
     if (this.state.circlePositions.length > 0 && this.props.lives > 0) {
@@ -60,11 +62,17 @@ class Board extends React.Component {
   }
 
   render() {
-    console.log(this.state.circlePositions)
+    console.log('circles', this.state.circles)
     console.log('length', this.state.circlePositions.length)
     return (
       <div className="board">
-        {this.state.circles.map(c => <Circle id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+        {/* <CSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionEnter={true} >
+          {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+        </CSSTransitionGroup> */}
+        {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
       </div>
     )
   }
