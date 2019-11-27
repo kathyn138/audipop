@@ -1,5 +1,7 @@
 import React from 'react';
 import './Circle.css';
+import InnerCircle from './InnerCircle';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class Circle extends React.Component {
   constructor(props) {
@@ -18,7 +20,8 @@ class Circle extends React.Component {
   }
 
   // componentDidMount() {
-  //   this.interval = setTimeout(() => this.setState({ visibility: true }), 3000);
+  //   setTimeout(function(){ this.componentWillUnmount(); }, 2000);
+
   // }
 
   // componentWillUnmount() {
@@ -27,7 +30,24 @@ class Circle extends React.Component {
 
   render() {
     return (
-      <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>{this.props.id}</div>
+      <React.Fragment>
+         <CSSTransitionGroup
+            transitionName="example"
+            transitionAppear={true}
+            transitionEnter={true}
+            >
+        <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>
+          {console.log(`rendering ${this.props.id}`)}
+          <CSSTransitionGroup
+            transitionName="innerCircle"
+            transitionAppear={true}
+            transitionEnter={true}
+            >
+            <InnerCircle />
+          </CSSTransitionGroup>
+        </div>
+            </CSSTransitionGroup>
+      </React.Fragment>
     )
   }
 }
