@@ -2,8 +2,8 @@
     position: relative;
     overflow: auto;
     margin: 0 auto;
-    width: 55%;
-    min-height: 100vh;
+    /* width: 55%; */
+    height: 80vh;
     background-color: aquamarine;
     display: flex;
     flex-wrap: wrap
