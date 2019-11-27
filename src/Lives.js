@@ -1,4 +1,5 @@
 import React from 'react';
+import './Lives.css';
 
 class Lives extends React.Component {
   constructor(props) {
