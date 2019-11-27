@@ -18,11 +18,9 @@
 } */
 .circle-1 { 
     position: absolute; 
-    /* left: 309px;
-    top: 152px; */
-
     left: 40%;
     top: 20%;
+
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
@@ -30,11 +28,9 @@
 }
 .circle-2 {
     position: absolute;
-    /* left: 809px;
-    top: 30px; */
-
     left: 10%;
     top: 40%;
+
     border: 4px solid red;
     border-radius: 50%;
     width: 100px;
@@ -54,7 +50,6 @@
     position: absolute;
     left: 20%;
     top: 70%; 
-
 
     border: 4px solid red;
     border-radius: 50%;
