@@ -4,7 +4,7 @@ import './CountDown.css';
 class CountDown extends React.Component {
   render() {
     return (
-        <div className="count">{this.props.count}</div>
+      <div className="count">{this.props.count}</div>
     )
   }
 }

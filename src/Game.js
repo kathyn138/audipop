@@ -2,6 +2,7 @@ import React from 'react';
 import Board from './Board';
 import Score from './Score';
 import Lives from './Lives';
+import CountDown from './CountDown';
 import './Game.css';
 
 class Game extends React.Component {
@@ -9,8 +10,20 @@ class Game extends React.Component {
     super(props);
     this.state = {
       score: 0,
-      lives: 3
+      lives: 3,
+      countDown: 1
     }
+  }
+
+  componentDidMount() {
+    this.countDownTimer = setInterval(
+      () => this.decrementCountDown(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.countDownTimer);
   }
 
   incrementScore(currScore) {
@@ -25,16 +38,28 @@ class Game extends React.Component {
     });
   }
 
+  decrementCountDown() {
+    if (this.state.countDown > 0) {
+      this.setState({
+        countDown: this.state.countDown - 1
+      })
+    }
+  }
+
   render() {
+    let display = this.state.countDown ? <CountDown count={this.state.countDown} /> : 
+    <React.Fragment>
+    <Board score={this.state.score}
+    lives={this.state.lives}
+    incrementScore={(score) => this.incrementScore(score)}
+    decrementLives={(lives) => this.decrementLives(lives)}
+    />
+  <Score score={this.state.score} />
+  <Lives lives={this.state.lives} />
+  </React.Fragment>
     return (
       <div className="game">
-        <Board score={this.state.score}
-          lives={this.state.lives}
-          incrementScore={(score) => this.incrementScore(score)}
-          decrementLives={(lives) => this.decrementLives(lives)}
-        />
-        <Score score={this.state.score} />
-        <Lives lives={this.state.lives} />
+        {display}
       </div>
     )
   }

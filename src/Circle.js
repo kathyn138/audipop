@@ -7,46 +7,53 @@ class Circle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visiblity: true
+      clicked: false
     }
     this.handleClick = this.handleClick.bind(this);
-
-    // this.interval = null;
   }
 
   handleClick() {
     this.props.click(this.props.id);
-    console.log('clicked');
+    this.setState({
+      clicked: false
+    })
   }
 
-  // componentDidMount() {
-  //   setTimeout(function(){ this.componentWillUnmount(); }, 2000);
-
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
+  componentDidMount() {
+    if (this.props.lives > 0 && this.state.clicked === false) {
+      this.timerRemove = setInterval(
+        () => this.autoUntick(), 1000);
+      }
+    }
+    
+    autoUntick() {
+      this.props.decrementLives(this.props.lives);
+    console.log('autountick')
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.timerRemove);
+  }
 
   render() {
     return (
       <React.Fragment>
-         <CSSTransitionGroup
-            transitionName="example"
-            transitionAppear={true}
-            transitionEnter={true}
+        <CSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionEnter={true}
+        >
+          <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>
+            {console.log(`rendering ${this.props.id}`)}
+            <CSSTransitionGroup
+              transitionName="innerCircle"
+              transitionAppear={true}
+              transitionEnter={true}
             >
-        <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>
-          {console.log(`rendering ${this.props.id}`)}
-          <CSSTransitionGroup
-            transitionName="innerCircle"
-            transitionAppear={true}
-            transitionEnter={true}
-            >
-            <InnerCircle />
-          </CSSTransitionGroup>
-        </div>
+              {/* <InnerCircle /> */}
             </CSSTransitionGroup>
+          </div>
+        </CSSTransitionGroup>
       </React.Fragment>
     )
   }

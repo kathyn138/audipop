@@ -9,7 +9,7 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       circles: [],
-      circlePositions: [1, 2, 3, 4, 2, 3, 1, 4, 2, 3, 1, 2, 3, 2, 4, 1, 2]
+      circlePositions: [1, 2, 3, 4, 5, 3, 1, 2, 4, 5, 2, 3, 1, 5, 2, 3, 2, 4, 1, 2]
     }
     this.tick = this.tick.bind(this);
     this.autoUntick = this.autoUntick.bind(this);
@@ -21,7 +21,7 @@ class Board extends React.PureComponent {
       1000
     );
     this.timerRemove = setInterval(
-      () => this.autoUntick(), 3000);
+      () => this.autoUntick(), 2000);
   }
 
   componentWillUnmount() {
@@ -30,7 +30,8 @@ class Board extends React.PureComponent {
   }
 
   tick() {
-    if (this.state.circlePositions.length > 0 && this.props.lives > 0) {
+    // < 3 to temporarily fix 4 circles showing up at once
+    if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.circles.length < 3) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
       this.setState({
         circles: [...this.state.circles, this.state.circlePositions[0]],
@@ -41,8 +42,9 @@ class Board extends React.PureComponent {
 
   autoUntick() {
     if (this.state.circles.length > 0 && this.props.lives > 0) {
-      this.props.decrementLives(this.props.lives);
+      // this.props.decrementLives(this.props.lives);
       let shiftArr = this.state.circles.filter(id => id !== this.state.circles[0])
+      // let shiftArr = [...this.state.circles.slice(1)];
       this.setState({
         circles: shiftArr
       })
@@ -72,7 +74,8 @@ class Board extends React.PureComponent {
           transitionEnter={true} >
           {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
         </CSSTransitionGroup> */}
-        {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+        {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} 
+        lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
       </div>
     )
   }
