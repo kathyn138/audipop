@@ -8,11 +8,11 @@ class Board extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      circles: [],
+      onBoard: [],
       circlePositions: [1, 2, 3, 4, 5, 3, 1, 2, 4, 5, 2, 3, 1, 5, 2, 3, 2, 4, 1, 2]
     }
     this.tick = this.tick.bind(this);
-    this.autoUntick = this.autoUntick.bind(this);
+    this.removeDeadCirclesFromBoard = this.removeDeadCirclesFromBoard.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class Board extends React.PureComponent {
       1000
     );
     this.timerRemove = setInterval(
-      () => this.autoUntick(), 2000);
+      () => this.removeDeadCirclesFromBoard(), 2000);
   }
 
   componentWillUnmount() {
@@ -31,22 +31,22 @@ class Board extends React.PureComponent {
 
   tick() {
     // < 3 to temporarily fix 4 circles showing up at once
-    if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.circles.length < 3) {
+    if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.onBoard.length < 3) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
+      let next = [uuid(), this.state.circlePositions[0]];
       this.setState({
-        circles: [...this.state.circles, this.state.circlePositions[0]],
+        onBoard: [...this.state.onBoard, next],
         circlePositions: shiftedCirclePositions
       });
     }
   }
 
-  autoUntick() {
-    if (this.state.circles.length > 0 && this.props.lives > 0) {
+  removeDeadCirclesFromBoard() {
+    if (this.state.onBoard.length > 0 && this.props.lives > 0) {
       // this.props.decrementLives(this.props.lives);
-      let shiftArr = this.state.circles.filter(id => id !== this.state.circles[0])
-      // let shiftArr = [...this.state.circles.slice(1)];
+      // let shiftArr = [...this.state.onBoard.slice(1)];
       this.setState({
-        circles: shiftArr
+        onBoard: this.state.onBoard.slice(1)
       })
     }
   }
@@ -56,15 +56,17 @@ class Board extends React.PureComponent {
     // after game is over
     if (this.props.lives > 0) {
       this.props.incrementScore(this.props.score);
-      let shiftArr = this.state.circles.filter(id => id !== clickedId)
+      // each circle's data is represented as an array
+      // [uuid, id]
+      let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedId)
       this.setState({
-        circles: shiftArr,
+        onBoard: shiftArr,
       });
     }
   }
 
   render() {
-    console.log('circles', this.state.circles)
+    console.log('circles', this.state.onBoard)
     console.log('length', this.state.circlePositions.length)
     return (
       <div className="board">
@@ -72,10 +74,10 @@ class Board extends React.PureComponent {
           transitionName="example"
           transitionAppear={true}
           transitionEnter={true} >
-          {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+          {this.state.onBoard.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
         </CSSTransitionGroup> */}
-        {this.state.circles.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} 
-        lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
+        {this.state.onBoard.map(([uuid, id]) => <Circle key={uuid} id={id} click={(clickedId) => this.userClick(clickedId)}
+          lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
       </div>
     )
   }
