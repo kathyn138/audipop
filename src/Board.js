@@ -1,5 +1,6 @@
 import React from 'react';
 import Circle from './Circle';
+import GameOver from './GameOver';
 import './Board.css';
 import { CSSTransitionGroup } from 'react-transition-group';
 const uuid = require('uuid/v4');
@@ -9,7 +10,8 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       onBoard: [],
-      circlePositions: [1, 2, 3, 4, 5, 3, 1, 2, 4, 5, 2, 3, 1, 5, 2, 3, 2, 4, 1, 2]
+      circlePositions: [1, 2, 3, 4, 5, 3, 1, 2, 4, 5, 2, 3, 1, 5, 2, 3, 2, 4, 1, 2], 
+      gameOver: false
     }
     this.tick = this.tick.bind(this);
     this.removeDeadCirclesFromBoard = this.removeDeadCirclesFromBoard.bind(this);
@@ -49,6 +51,12 @@ class Board extends React.PureComponent {
         onBoard: this.state.onBoard.slice(1)
       })
     }
+    if (this.props.lives === 0) {
+      this.setState({
+        onBoard: [], 
+        gameOver: true
+      })
+    }
   }
 
   userClick(clickedCircle) {
@@ -78,6 +86,7 @@ class Board extends React.PureComponent {
         </CSSTransitionGroup> */}
         {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid} position={position} click={(clickedId) => this.userClick(clickedId)}
           lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
+        {this.state.gameOver ? <GameOver /> : ''}
       </div>
     )
   }
