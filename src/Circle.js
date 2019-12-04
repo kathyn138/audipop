@@ -1,6 +1,7 @@
 import React from 'react';
 import './Circle.css';
 import InnerCircle from './InnerCircle';
+import soundEffect from './assets/click-sound.wav';
 import { CSSTransitionGroup } from 'react-transition-group';
 
 class Circle extends React.Component {
@@ -17,6 +18,8 @@ class Circle extends React.Component {
     // this.setState({
     //   clicked: false
     // })
+    this.clickSound = new Audio(soundEffect);
+    this.clickSound.play();
   }
 
   componentDidMount() {
