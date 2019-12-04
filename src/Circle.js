@@ -13,7 +13,7 @@ class Circle extends React.Component {
   }
 
   handleClick() {
-    this.props.click(this.props.id);
+    this.props.click(this.props.position);
     // this.setState({
     //   clicked: false
     // })
@@ -43,8 +43,8 @@ class Circle extends React.Component {
           transitionAppear={true}
           transitionEnter={true}
         >
-          <div className={`circle-${this.props.id}`} onClick={() => this.handleClick((this.props.id))}>
-            {console.log(`rendering ${this.props.id}`)}
+          <div className={`circle-${this.props.position}`} onClick={() => this.handleClick((this.props.position))}>
+            {console.log(`rendering ${this.props.position}`)}
             <CSSTransitionGroup
               transitionName="innerCircle"
               transitionAppear={true}

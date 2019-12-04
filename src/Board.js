@@ -51,14 +51,14 @@ class Board extends React.PureComponent {
     }
   }
 
-  userClick(clickedId) {
+  userClick(clickedCircle) {
     // conditional statement disallows player from incrementing score
     // after game is over
     if (this.props.lives > 0) {
       this.props.incrementScore(this.props.score);
       // each circle's data is represented as an array
       // [uuid, id]
-      let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedId)
+      let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedCircle)
       this.setState({
         onBoard: shiftArr,
       });
@@ -76,7 +76,7 @@ class Board extends React.PureComponent {
           transitionEnter={true} >
           {this.state.onBoard.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
         </CSSTransitionGroup> */}
-        {this.state.onBoard.map(([uuid, id]) => <Circle key={uuid} id={id} click={(clickedId) => this.userClick(clickedId)}
+        {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid} position={position} click={(clickedId) => this.userClick(clickedId)}
           lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
       </div>
     )
