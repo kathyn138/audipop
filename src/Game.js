@@ -4,6 +4,7 @@ import Score from './Score';
 import Lives from './Lives';
 import CountDown from './CountDown';
 import './Game.css';
+import music from './assets/kda-popstars.webm'
 
 class Game extends React.Component {
   constructor(props) {
@@ -11,15 +12,17 @@ class Game extends React.Component {
     this.state = {
       score: 0,
       lives: 3,
-      countDown: 1
+      countDown: 3
     }
   }
-
+  
   componentDidMount() {
     this.countDownTimer = setInterval(
       () => this.decrementCountDown(),
       1000
     );
+    this.gameSong = new Audio(music);
+    this.gameSong.play();
   }
 
   componentWillUnmount() {
