@@ -36,12 +36,27 @@
     animation-name: inner-circle;
     animation-duration: 2s;
 } */
-.example-appear {
+/* for the echo out circles */
+/* .example-appear {
     box-shadow: 0 0 0px 0px black, 0 0 0px 1px rgba(255, 255, 255, 0.3);
 }
 .example-appear.example-appear-active {
     box-shadow: 0 0 0px 9px black, 0 0 0px 10px rgba(255, 255, 255, 0.3);
     transition: box-shadow 1s;
+}
+.example-leave {
+    opacity: 1;
+}
+.example-leave.example-leave-active {
+    opacity: .01;
+    transition: opacity .5s;
+} */
+.example-appear {
+    box-shadow: 0 0 0px 9px black, 0 0 0px 10px rgba(255, 255, 255, 0.3);
+}
+.example-appear.example-appear-active {
+    box-shadow: 0 0 0px 0px black, 0 0 0px 1px rgba(255, 255, 255, 0.3);
+    transition: box-shadow .5s;
 }
 .example-leave {
     opacity: 1;
