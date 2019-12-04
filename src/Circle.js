@@ -50,7 +50,7 @@ class Circle extends React.Component {
               transitionAppear={true}
               transitionEnter={true}
             >
-              {/* <InnerCircle /> */}
+              <InnerCircle />
             </CSSTransitionGroup>
           </div>
         </CSSTransitionGroup>
