@@ -4,7 +4,7 @@ import Score from './Score';
 import Lives from './Lives';
 import CountDown from './CountDown';
 import './Game.css';
-import music from './assets/kda-popstars.webm'
+import music from './assets/kda-popstars-t2.mp3'
 
 class Game extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Game extends React.Component {
       countDown: 3
     }
   }
-  
+
   componentDidMount() {
     this.countDownTimer = setInterval(
       () => this.decrementCountDown(),
@@ -50,16 +50,16 @@ class Game extends React.Component {
   }
 
   render() {
-    let display = this.state.countDown ? <CountDown count={this.state.countDown} /> : 
-    <React.Fragment>
-    <Board score={this.state.score}
-    lives={this.state.lives}
-    incrementScore={(score) => this.incrementScore(score)}
-    decrementLives={(lives) => this.decrementLives(lives)}
-    />
-  <Score score={this.state.score} />
-  <Lives lives={this.state.lives} />
-  </React.Fragment>
+    let display = this.state.countDown ? <CountDown count={this.state.countDown} /> :
+      <React.Fragment>
+        <Board score={this.state.score}
+          lives={this.state.lives}
+          incrementScore={(score) => this.incrementScore(score)}
+          decrementLives={(lives) => this.decrementLives(lives)}
+        />
+        <Score score={this.state.score} />
+        <Lives lives={this.state.lives} />
+      </React.Fragment>
     return (
       <div className="game">
         {display}
