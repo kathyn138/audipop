@@ -1,0 +1,67 @@
+.game {
+    position: relative;
+    width: 55%;
+    margin: 0 auto;
+}
+.board {
+    position: relative;
+    overflow: auto;
+    margin: 0 auto;
+    /* width: 55%; */
+    height: 80vh;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap
+}
+.circle-1 { 
+    position: absolute; 
+    left: 40%;
+    top: 20%;
+
+    border: 4px solid #2F3493;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-clip: border-box;
+    /* box-shadow: 0 0 0px 26px black, 0 0 0px 30px white */
+}
+.circle-2 {
+    position: absolute;
+    left: 10%;
+    top: 40%;
+
+    border: 4px solid #9821A5;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.circle-3 {
+    position: absolute;
+    right: 10%;
+    top: 40%; 
+
+    border: 4px solid #E5B48F;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.circle-4 {
+    position: absolute;
+    left: 20%;
+    top: 70%; 
+
+    border: 4px solid #D214A0;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.circle-5 {
+    position: absolute;
+    right: 20%; 
+    top: 70%; 
+
+    border: 4px solid #59EBFC;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
