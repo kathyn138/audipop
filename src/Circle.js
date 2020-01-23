@@ -46,7 +46,7 @@ class Circle extends React.Component {
           transitionAppear={true}
           transitionEnter={true}
         >
-          <div className={`circle-${this.props.position}`} onClick={() => this.handleClick((this.props.position))}>
+          <div className={`c${this.props.position}`} onClick={() => this.handleClick((this.props.position))}>
             {console.log(`rendering ${this.props.position}`)}
             <CSSTransitionGroup
               transitionName="innerCircle"

@@ -10,7 +10,7 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       onBoard: [],
-      circlePositions: [1, 2, 3, 4, 5, 3, 1, 2, 4, 5, 2, 3, 1, 5, 2, 3, 2, 4, 1, 2], 
+      circlePositions: ['1-1', '1-2', '1-3', '1-4', '1-5'], 
       gameOver: false
     }
     this.tick = this.tick.bind(this);
