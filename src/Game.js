@@ -21,8 +21,8 @@ class Game extends React.Component {
       () => this.decrementCountDown(),
       1000
     );
-    this.gameSong = new Audio(music);
-    this.gameSong.play();
+    // this.gameSong = new Audio(music);
+    // this.gameSong.play();
   }
 
   componentWillUnmount() {
