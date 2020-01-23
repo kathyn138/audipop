@@ -12,7 +12,7 @@ class Game extends React.Component {
     this.state = {
       score: 0,
       lives: 3,
-      countDown: 3
+      countDown: 0
     }
   }
 
