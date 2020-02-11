@@ -10,20 +10,20 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       onBoard: [],
-      circlePositions: ['1-1', '1-2', '1-3', '1-4', '1-5'], 
+      circlePositions: ['1-1', '1-2', '1-3', '1-4', '1-5'],
       gameOver: false
     }
-    this.tick = this.tick.bind(this);
-    this.removeDeadCirclesFromBoard = this.removeDeadCirclesFromBoard.bind(this);
+    this.addToBoard = this.addToBoard.bind(this);
+    this.autoRemoveFromBoard = this.autoRemoveFromBoard.bind(this);
   }
 
   componentDidMount() {
     this.timerID = setInterval(
-      () => this.tick(),
+      () => this.addToBoard(),
       1000
     );
     this.timerRemove = setInterval(
-      () => this.removeDeadCirclesFromBoard(), 2000);
+      () => this.autoRemoveFromBoard(), 2000);
   }
 
   componentWillUnmount() {
@@ -31,7 +31,7 @@ class Board extends React.PureComponent {
     clearInterval(this.timerRemove);
   }
 
-  tick() {
+  addToBoard() {
     // < 3 to temporarily fix 4 circles showing up at once
     if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.onBoard.length < 3) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
@@ -43,7 +43,7 @@ class Board extends React.PureComponent {
     }
   }
 
-  removeDeadCirclesFromBoard() {
+  autoRemoveFromBoard() {
     if (this.state.onBoard.length > 0 && this.props.lives > 0) {
       // this.props.decrementLives(this.props.lives);
       // let shiftArr = [...this.state.onBoard.slice(1)];
@@ -53,13 +53,13 @@ class Board extends React.PureComponent {
     }
     if (this.props.lives === 0) {
       this.setState({
-        onBoard: [], 
+        onBoard: [],
         gameOver: true
       })
     }
   }
 
-  userClick(clickedCircle) {
+  userRemoveFromBoard(clickedCircle) {
     // conditional statement disallows player from incrementing score
     // after game is over
     if (this.props.lives > 0) {
@@ -82,9 +82,11 @@ class Board extends React.PureComponent {
           transitionName="example"
           transitionAppear={true}
           transitionEnter={true} >
-          {this.state.onBoard.map(c => <Circle key={uuid()} id={c} click={(clickedId) => this.userClick(clickedId)} />)}
+          {this.state.onBoard.map(c => <Circle key={uuid()} id={c} 
+          click={(clickedId) => this.userRemoveFromBoard(clickedId)} />)}
         </CSSTransitionGroup> */}
-        {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid} position={position} click={(clickedId) => this.userClick(clickedId)}
+        {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid}
+          position={position} click={(clickedId) => this.userRemoveFromBoard(clickedId)}
           lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
         {this.state.gameOver ? <GameOver /> : ''}
       </div>
