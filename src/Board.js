@@ -44,13 +44,13 @@ class Board extends React.PureComponent {
   }
 
   autoRemoveFromBoard() {
-    if (this.state.onBoard.length > 0 && this.props.lives > 0) {
+    if (this.state.onBoard.length > 2 && this.props.lives > 0) {
       // this.props.decrementLives(this.props.lives);
-      // let shiftArr = [...this.state.onBoard.slice(1)];
       this.setState({
         onBoard: this.state.onBoard.slice(1)
       })
     }
+
     if (this.props.lives === 0) {
       this.setState({
         onBoard: [],
@@ -66,10 +66,13 @@ class Board extends React.PureComponent {
       this.props.incrementScore(this.props.score);
       // each circle's data is represented as an array
       // [uuid, id]
+
       let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedCircle)
+      
       this.setState({
         onBoard: shiftArr,
       });
+      console.log('onBoard after remove', this.state.onBoard)
     }
   }
 
