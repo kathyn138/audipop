@@ -18,21 +18,21 @@ class Board extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
+    this.addToBoardTimer = setInterval(
       () => this.addToBoard(),
       1000
     );
-    // this.timerRemove = setInterval(
-    //   () => this.autoRemoveFromBoard(), 2000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID);
-    // clearInterval(this.timerRemove);
+    clearInterval(this.addToBoardTimer);
   }
 
   addToBoard() {
-    // < 3 to temporarily fix 4 circles showing up at once
+    // only add to board when there's circles left to add, 
+    // game still valid (lives > 0)
+    // and set max num of circles on board to 2 
+
     if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.onBoard.length < 3) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
       let next = [uuid(), this.state.circlePositions[0]];
@@ -45,6 +45,9 @@ class Board extends React.PureComponent {
 
   autoRemoveFromBoard(circleToAutoRemove) {
     if (this.props.lives > 0) {
+      // circle[1] bc
+      // each circle's data is represented as an array
+      // [uuid, position]
       let shiftArr = this.state.onBoard.filter(circle => circle[1] !== circleToAutoRemove)
       
       this.setState({
@@ -65,6 +68,7 @@ class Board extends React.PureComponent {
     // after game is over
     if (this.props.lives > 0) {
       this.props.incrementScore(this.props.score);
+      // circle[1] bc
       // each circle's data is represented as an array
       // [uuid, position]
 
