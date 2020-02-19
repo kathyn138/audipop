@@ -1,6 +1,11 @@
+.poro-life {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+    /* color: white; */
+}
 .lives {
     position: absolute;
-    top: 0px;
+    top: 10px;
     right: 0px;
-    color: white;
 }
