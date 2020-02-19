@@ -23,19 +23,20 @@ class Circle extends React.Component {
   }
 
   componentDidMount() {
-    // this.timerRemove = setInterval(
-    //   () => this.autoUntick(), 1000);
+    this.timerRemove = setInterval(
+      () => this.autoUntick(), 1000);
   }
 
   autoUntick() {
     if (this.props.lives > 0) {
-      // this.props.decrementLives(this.props.lives);
-      console.log('autountick')
+      this.props.decrementLives(this.props.lives);
+      this.props.autoRemove(this.props.position);
+      console.log('autountick');
     }
   }
 
   componentWillUnmount() {
-    // clearInterval(this.timerRemove);
+    clearInterval(this.timerRemove);
   }
 
   render() {

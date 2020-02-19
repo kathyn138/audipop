@@ -22,13 +22,13 @@ class Board extends React.PureComponent {
       () => this.addToBoard(),
       1000
     );
-    this.timerRemove = setInterval(
-      () => this.autoRemoveFromBoard(), 2000);
+    // this.timerRemove = setInterval(
+    //   () => this.autoRemoveFromBoard(), 2000);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-    clearInterval(this.timerRemove);
+    // clearInterval(this.timerRemove);
   }
 
   addToBoard() {
@@ -43,12 +43,13 @@ class Board extends React.PureComponent {
     }
   }
 
-  autoRemoveFromBoard() {
-    if (this.state.onBoard.length > 2 && this.props.lives > 0) {
-      // this.props.decrementLives(this.props.lives);
+  autoRemoveFromBoard(circleToAutoRemove) {
+    if (this.props.lives > 0) {
+      let shiftArr = this.state.onBoard.filter(circle => circle[1] !== circleToAutoRemove)
+      
       this.setState({
-        onBoard: this.state.onBoard.slice(1)
-      })
+        onBoard: shiftArr,
+      });
     }
 
     if (this.props.lives === 0) {
@@ -65,20 +66,20 @@ class Board extends React.PureComponent {
     if (this.props.lives > 0) {
       this.props.incrementScore(this.props.score);
       // each circle's data is represented as an array
-      // [uuid, id]
+      // [uuid, position]
 
       let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedCircle)
       
       this.setState({
         onBoard: shiftArr,
       });
-      console.log('onBoard after remove', this.state.onBoard)
+      // console.log('onBoard after remove', this.state.onBoard)
     }
   }
 
   render() {
-    console.log('circles', this.state.onBoard)
-    console.log('length', this.state.circlePositions.length)
+    // console.log('circles', this.state.onBoard)
+    // console.log('length', this.state.circlePositions.length)
     return (
       <div className="board">
         {/* <CSSTransitionGroup
@@ -90,6 +91,7 @@ class Board extends React.PureComponent {
         </CSSTransitionGroup> */}
         {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid}
           position={position} click={(clickedId) => this.userRemoveFromBoard(clickedId)}
+          autoRemove={(circleToAutoRemove) => this.autoRemoveFromBoard(circleToAutoRemove)}
           lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
         {this.state.gameOver ? <GameOver /> : ''}
       </div>
