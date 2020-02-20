@@ -13,11 +13,10 @@ class Lives extends React.Component {
   render() {
     return (
       <div className="lives">
-        <img src={poroLife} className="poro-life" alt="life"></img>
-        <img src={poroLife} className="poro-life" alt="life"></img>
-        <img src={poroLife} className="poro-life" alt="life"></img>
+        {[...Array(this.props.lives)].map((e, i) =>
+          <img src={poroLife} className="poro-life"
+            key={i} alt="life"></img>)}
       </div>
-      // <div className="lives">Lives: {this.props.lives}</div>
     )
   }
 }
