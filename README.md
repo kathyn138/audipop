@@ -8,7 +8,7 @@ It is currently a work in progress.
 
 ## To Do 
 - [x] Fix autoRemove bug
-- [ ] Grey out poros when lives are lost 
+- [x] Remove poros as player loses lives  
 - [ ] Fix inner circle transparency and speed
 - [ ] Add 2nd circle batch
 - [ ] Add 3rd circle batch 
