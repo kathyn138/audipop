@@ -29,7 +29,7 @@ class Circle extends React.Component {
 
   autoUntick() {
     if (this.props.lives > 0) {
-      this.props.decrementLives(this.props.lives);
+      // this.props.decrementLives(this.props.lives);
       this.props.autoRemove(this.props.position);
       console.log('autountick');
     }
@@ -46,6 +46,9 @@ class Circle extends React.Component {
           transitionName="example"
           transitionAppear={true}
           transitionEnter={true}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionAppearTimeout={500}
         >
           <div className={`c${this.props.position}`} onClick={() => this.handleClick((this.props.position))}>
             {console.log(`rendering ${this.props.position}`)}
@@ -53,8 +56,11 @@ class Circle extends React.Component {
               transitionName="innerCircle"
               transitionAppear={true}
               transitionEnter={true}
+              transitionEnterTimeout={800}
+              transitionLeaveTimeout={800}
+              transitionAppearTimeout={800}
             >
-              {/* <InnerCircle /> */}
+              <InnerCircle />
             </CSSTransitionGroup>
           </div>
         </CSSTransitionGroup>
