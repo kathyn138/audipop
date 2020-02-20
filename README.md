@@ -13,5 +13,5 @@ It is currently a work in progress.
 - [ ] Add 2nd circle batch
 - [ ] Add 3rd circle batch 
 - [ ] Sync circle timing to music
-- [ ] Fix score text placement
+- [x] Fix score text placement
 - [ ] Add ending screen with "Play Again?" button 
