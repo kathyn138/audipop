@@ -52,20 +52,20 @@
     transition: opacity .5s;
 } */
 .example-appear {
-    box-shadow: 0 0 0px 9px black, 0 0 0px 10px rgba(255, 255, 255, 0.728);
+    box-shadow: 0 0 0px 28px black, 0 0 0px 30px rgb(255, 255, 255);
 }
 .example-appear.example-appear-active {
-    box-shadow: 0 0 0px 0px black, 0 0 0px 1px rgba(255, 255, 255, 0.728);
-    transition: box-shadow .5s;
+    box-shadow: 0 0 0px -5px black, 0 0 0px -5px rgba(255, 255, 255);
+    transition: box-shadow 1s;
 }
 .example-leave {
     opacity: 1;
 }
 .example-leave.example-leave-active {
-    opacity: .01;
-    transition: opacity .5s;
+    opacity: 1;
+    transition: opacity .1s;
 }
-.circle-2 {
+/* .circle-2 {
     position: absolute;
     left: 10%;
     top: 40%;
@@ -104,7 +104,7 @@
     border-radius: 50%;
     width: 100px;
     height: 100px;
-}
+} */
 
 /* testing circle batch 1 */
 .c1-1 {
