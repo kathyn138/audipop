@@ -14,4 +14,5 @@ It is currently a work in progress.
 - [ ] Add 3rd circle batch 
 - [ ] Sync circle timing to music
 - [x] Fix score text placement
-- [ ] Add ending screen with "Play Again?" button 
+- [ ] Add "Play Again?" button to end screen
+- [ ] Incorporate TypeScript
