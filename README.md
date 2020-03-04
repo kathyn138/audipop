@@ -9,9 +9,9 @@ It is currently a work in progress.
 ## To Do 
 - [x] Fix autoRemove bug
 - [x] Remove poros as player loses lives  
-- [ ] Fix inner circle transparency and speed
-- [ ] Add 2nd circle batch
-- [ ] Add 3rd circle batch 
+- [x] Add 2nd circle batch
+- [x] Add 3rd circle batch 
+- [ ] Add animation to circles
 - [ ] Sync circle timing to music
 - [x] Fix score text placement
 - [ ] Add "Play Again?" button to end screen
