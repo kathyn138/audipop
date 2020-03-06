@@ -23,11 +23,12 @@
     width: 100px;
     height: 100px;
 
-    animation-name: ok;
-    animation-duration: 2s;
-    animation-timing-function: ease;
+    animation: turnc1-1 2s ease forwards, 
+    /* pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -.4s infinite, */
+    pulse-c1-1 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    animation-delay: 0s, .5s;
 }
-@keyframes ok {
+@keyframes turnc1-1 {
     0% {
         border: 4px solid white;
     }
@@ -35,9 +36,25 @@
         border: 4px solid red; 
     }
     100% {
-        border: 4px solid white;
+        border: 4px solid red;
     }
 }
+/* dis one good for simple non glow */
+/* @keyframes pulse-c1-1 {
+    0% {
+    box-shadow: 0 0 0 0px rgba(255, 0, 0, 0.872);
+    }
+    100% {
+        box-shadow: 0 0 0 35px rgba(255, 0, 0, 0);
+    }
+} */
+/* second one wid glow but smaller pulse */
+@keyframes pulse-c1-1 {
+    0% { box-shadow:0 0 8px red, inset 0 0 8px red; }
+    50% { box-shadow:0 0 16px red, inset 0 0 14px red; }
+    100% { box-shadow:0 0 8px red, inset 0 0 8px red; }
+}
+
 .c1-2 {
     position: absolute;
     left: 40%;
