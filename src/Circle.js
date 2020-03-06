@@ -24,7 +24,7 @@ class Circle extends React.Component {
 
   componentDidMount() {
     this.timerRemove = setInterval(
-      () => this.autoUntick(), 1000);
+      () => this.autoUntick(), 2000);
   }
 
   autoUntick() {
