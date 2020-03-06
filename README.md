@@ -14,5 +14,10 @@ It is currently a work in progress.
 - [x] Add animation to circles
 - [x] Sync circle timing to music
 - [x] Fix score text placement
-- [ ] Add "Play Again?" button to end screen
+- [x] Add "Play Again?" button to end screen
 - [ ] Incorporate TypeScript
+
+## Future Implementation 
+- Backend
+- Combo counter 
+- Flashy images for combos 

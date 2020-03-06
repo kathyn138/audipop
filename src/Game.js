@@ -4,7 +4,7 @@ import Score from './Score';
 import Lives from './Lives';
 import CountDown from './CountDown';
 import './Game.css';
-import music from './assets/kda-popstars-t2.mp3'
+import music from './assets/thegreatest.mp3'
 
 class Game extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Game extends React.Component {
     this.state = {
       score: 0,
       lives: 3,
-      countDown: 0
+      countDown: 3
     }
   }
 
@@ -21,8 +21,8 @@ class Game extends React.Component {
       () => this.decrementCountDown(),
       1000
     );
-    // this.gameSong = new Audio(music);
-    // this.gameSong.play();
+    this.gameSong = new Audio(music);
+    this.gameSong.play();
   }
 
   componentWillUnmount() {

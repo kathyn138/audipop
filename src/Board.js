@@ -12,7 +12,7 @@ class Board extends React.PureComponent {
       onBoard: [],
       // '1-1', '1-2', '1-3', '1-4', '1-5', 
       // '2-1', '2-2', '2-3', '2-4',  
-      circlePositions: [ '1-1', '1-2', '1-3', '1-4', '1-5', '2-1', '2-2', '2-3', '2-4', '3-1', '3-2', '3-3', '3-4', '3-5'],
+      circlePositions: ['1-1', '1-2', '1-3', '1-4', '1-5', '2-1', '2-2', '2-3', '2-4', '3-1', '3-2', '3-3', '3-4', '3-5'],
       gameOver: false
     }
     this.addToBoard = this.addToBoard.bind(this);
@@ -51,7 +51,7 @@ class Board extends React.PureComponent {
       // each circle's data is represented as an array
       // [uuid, position]
       let shiftArr = this.state.onBoard.filter(circle => circle[1] !== circleToAutoRemove)
-      
+
       this.setState({
         onBoard: shiftArr,
       });
@@ -75,7 +75,7 @@ class Board extends React.PureComponent {
       // [uuid, position]
 
       let shiftArr = this.state.onBoard.filter(circle => circle[1] !== clickedCircle)
-      
+
       this.setState({
         onBoard: shiftArr,
       });
@@ -88,18 +88,13 @@ class Board extends React.PureComponent {
     // console.log('length', this.state.circlePositions.length)
     return (
       <div className="board">
-        {/* <CSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionEnter={true} >
-          {this.state.onBoard.map(c => <Circle key={uuid()} id={c} 
-          click={(clickedId) => this.userRemoveFromBoard(clickedId)} />)}
-        </CSSTransitionGroup> */}
         {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid}
           position={position} click={(clickedId) => this.userRemoveFromBoard(clickedId)}
           autoRemove={(circleToAutoRemove) => this.autoRemoveFromBoard(circleToAutoRemove)}
           lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
-        {this.state.gameOver ? <GameOver /> : ''}
+        {this.state.gameOver ||
+          (this.state.onBoard.length === 0 && this.state.circlePositions.length === 0)
+          ? <GameOver score={this.props.score} /> : ''}
       </div>
     )
   }
