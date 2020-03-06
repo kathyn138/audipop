@@ -15,6 +15,7 @@ It is currently a work in progress.
 - [x] Sync circle timing to music
 - [x] Fix score text placement
 - [x] Add "Play Again?" button to end screen
+- [ ] Add indicator when player loses a life 
 - [ ] Incorporate TypeScript
 
 ## Future Implementation 
