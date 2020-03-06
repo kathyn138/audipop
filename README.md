@@ -11,8 +11,8 @@ It is currently a work in progress.
 - [x] Remove poros as player loses lives  
 - [x] Add 2nd circle batch
 - [x] Add 3rd circle batch 
-- [ ] Add animation to circles
-- [ ] Sync circle timing to music
+- [x] Add animation to circles
+- [x] Sync circle timing to music
 - [x] Fix score text placement
 - [ ] Add "Play Again?" button to end screen
 - [ ] Incorporate TypeScript

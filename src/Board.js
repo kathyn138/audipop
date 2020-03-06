@@ -10,7 +10,9 @@ class Board extends React.PureComponent {
     super(props);
     this.state = {
       onBoard: [],
-      circlePositions: ['1-1', '1-2', '1-3', '1-4', '1-5'],
+      // '1-1', '1-2', '1-3', '1-4', '1-5', 
+      // '2-1', '2-2', '2-3', '2-4',  
+      circlePositions: [ '1-1', '1-2', '1-3', '1-4', '1-5', '2-1', '2-2', '2-3', '2-4', '3-1', '3-2', '3-3', '3-4', '3-5'],
       gameOver: false
     }
     this.addToBoard = this.addToBoard.bind(this);
@@ -20,7 +22,7 @@ class Board extends React.PureComponent {
   componentDidMount() {
     this.addToBoardTimer = setInterval(
       () => this.addToBoard(),
-      1000
+      1250
     );
   }
 
