@@ -55,6 +55,8 @@ class Board extends React.PureComponent {
       this.setState({
         onBoard: shiftArr,
       });
+
+      this.props.decrementLives(this.props.lives)
     }
 
     if (this.props.lives === 0) {
