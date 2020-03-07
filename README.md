@@ -4,6 +4,8 @@ Audipop is a web-based rhythm game.
 
 It is currently a work in progress. 
 
+Beta version is [available to play on Heroku](https://audipop-test.herokuapp.com/).
+
 ![Game Demo Screenshot](src/assets/game-demo-screenshot.png "Game Demo Screenshot")
 
 ## To Do 
