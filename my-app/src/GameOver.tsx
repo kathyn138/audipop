@@ -1,14 +1,11 @@
 import React from 'react';
 import './GameOver.css';
 
-class GameOver extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+type GameOverProps = {
+  score: number;
+};
 
-    }
-  }
-
+class GameOver extends React.Component<GameOverProps> {
   // look into this
   // not sure if it's going against any rules 
   

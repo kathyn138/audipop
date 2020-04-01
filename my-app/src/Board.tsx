@@ -4,8 +4,21 @@ import GameOver from './GameOver';
 import './Board.css';
 const uuid = require('uuid/v4');
 
-class Board extends React.PureComponent {
-  constructor(props) {
+type BoardProps = {
+  score: number;
+  lives: number;
+};
+
+type BoardState = {
+  onBoard: string[];
+  circlePositions: string[];
+  gameOver: boolean;
+};
+
+class Board extends React.PureComponent<BoardProps, BoardState> {
+  private addToBoardTimer ?: number;
+
+  constructor(props: BoardProps) {
     super(props);
     this.state = {
       onBoard: [],
@@ -44,7 +57,7 @@ class Board extends React.PureComponent {
     }
   }
 
-  autoRemoveFromBoard(circleToAutoRemove) {
+  autoRemoveFromBoard(circleToAutoRemove: string) {
     if (this.props.lives > 0) {
       // circle[1] bc
       // each circle's data is represented as an array
@@ -66,7 +79,7 @@ class Board extends React.PureComponent {
     }
   }
 
-  userRemoveFromBoard(clickedCircle) {
+  userRemoveFromBoard(clickedCircle: string) {
     // conditional statement disallows player from incrementing score
     // after game is over
     if (this.props.lives > 0) {
@@ -90,9 +103,9 @@ class Board extends React.PureComponent {
     return (
       <div className="board">
         {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid}
-          position={position} click={(clickedId) => this.userRemoveFromBoard(clickedId)}
-          autoRemove={(circleToAutoRemove) => this.autoRemoveFromBoard(circleToAutoRemove)}
-          lives={this.props.lives} decrementLives={(lives) => this.props.decrementLives(lives)} />)}
+          position={position} click={(clickedId: string) => this.userRemoveFromBoard(clickedId)}
+          autoRemove={(circleToAutoRemove: string) => this.autoRemoveFromBoard(circleToAutoRemove)}
+          lives={this.props.lives} decrementLives={(lives: number) => this.props.decrementLives(lives)} />)}
         {this.state.gameOver ||
           (this.state.onBoard.length === 0 && this.state.circlePositions.length === 0)
           ? <GameOver score={this.props.score} /> : ''}

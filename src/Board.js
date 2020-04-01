@@ -46,6 +46,7 @@ class Board extends React.PureComponent {
   }
 
   autoRemoveFromBoard(circleToAutoRemove) {
+    console.log('here', circleToAutoRemove)
     if (this.props.lives > 0) {
       // circle[1] bc
       // each circle's data is represented as an array

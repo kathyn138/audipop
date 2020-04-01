@@ -1,7 +1,11 @@
 import React from 'react';
 import './CountDown.css';
 
-class CountDown extends React.Component {
+type CountDownProps = {
+  count: number;
+};
+
+class CountDown extends React.Component<CountDownProps> {
   render() {
     return (
       <div className="count">{this.props.count}</div>

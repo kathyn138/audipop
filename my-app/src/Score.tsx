@@ -1,14 +1,11 @@
 import React from 'react';
 import './Score.css';
 
-class Score extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+type ScoreProps = {
+  score: number;
+};
 
-    }
-  }
-
+class Score extends React.Component<ScoreProps> {
   render() {
     return (
       <div className="score">Score: {this.props.score}</div>

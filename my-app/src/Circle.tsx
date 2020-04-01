@@ -4,12 +4,16 @@ import './Circle.css';
 import soundEffect from './assets/click-sound.wav';
 // import { CSSTransitionGroup } from 'react-transition-group';
 
-class Circle extends React.Component {
-  constructor(props) {
+type CircleProps = {
+  lives: number;
+  position: string;
+}
+class Circle extends React.Component<CircleProps> {
+  private clickSound?: HTMLAudioElement;
+  private timerRemove?: number; 
+  
+  constructor(props: CircleProps) {
     super(props);
-    // this.state = {
-    //   clicked: false
-    // }
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -44,16 +48,7 @@ class Circle extends React.Component {
       <React.Fragment>
           <div className={`c${this.props.position}`} onClick={() => this.handleClick((this.props.position))}>
             {console.log(`rendering ${this.props.position}`)}
-            {/* <CSSTransitionGroup
-              transitionName="innerCircle"
-              transitionAppear={true}
-              transitionEnter={true}
-              transitionEnterTimeout={800}
-              transitionLeaveTimeout={800}
-              transitionAppearTimeout={800}
-            >
-              <InnerCircle />
-            </CSSTransitionGroup> */}
+            {}
           </div>
       </React.Fragment>
     )

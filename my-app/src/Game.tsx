@@ -5,22 +5,36 @@ import Lives from './Lives';
 import CountDown from './CountDown';
 import './Game.css';
 import music from './assets/thegreatest.mp3'
+import { number } from 'prop-types';
 
-class Game extends React.Component {
-  constructor(props) {
+type GameState = {
+  score: number;
+  lives: number; 
+  countDown: number;
+};
+
+class Game extends React.Component<{}, GameState> {
+  private countDownTimer?: number;
+  private gameSong?: HTMLAudioElement;
+
+  constructor(props: {}) { // dont have props 
     super(props);
     this.state = {
       score: 0,
       lives: 3,
       countDown: 3
-    }
-  }
+    };
 
+  }
+  
   componentDidMount() {
     this.countDownTimer = setInterval(
       () => this.decrementCountDown(),
       1000
-    );
+      );
+    
+    // can move this to constructor 
+    // to avoid having it be optional at ts declaration
     this.gameSong = new Audio(music);
     this.gameSong.play();
   }
@@ -29,13 +43,13 @@ class Game extends React.Component {
     clearInterval(this.countDownTimer);
   }
 
-  incrementScore(currScore) {
+  incrementScore(currScore: number) {
     this.setState({
       score: currScore + 1
     });
   }
 
-  decrementLives(currLives) {
+  decrementLives(currLives: number) {
     this.setState({
       lives: currLives - 1
     });
@@ -54,8 +68,8 @@ class Game extends React.Component {
       <React.Fragment>
         <Board score={this.state.score}
           lives={this.state.lives}
-          incrementScore={(score) => this.incrementScore(score)}
-          decrementLives={(lives) => this.decrementLives(lives)}
+          incrementScore={(score: number) => this.incrementScore(score)}
+          decrementLives={(lives: number) => this.decrementLives(lives)}
         />
         <Score score={this.state.score} />
         <Lives lives={this.state.lives} />
