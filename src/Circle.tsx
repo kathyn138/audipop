@@ -1,27 +1,24 @@
 import React from 'react';
 import './Circle.css';
-// import InnerCircle from './InnerCircle';
 import soundEffect from './assets/click-sound.wav';
-// import { CSSTransitionGroup } from 'react-transition-group';
 
 type CircleProps = {
   lives: number;
   position: string;
+  click: (position: string) => void
+  autoRemove: (position: string) => void
 }
 class Circle extends React.Component<CircleProps> {
   private clickSound?: HTMLAudioElement;
   private timerRemove?: number; 
-  
+
   constructor(props: CircleProps) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(position: string) {
     this.props.click(this.props.position);
-    // this.setState({
-    //   clicked: false
-    // })
     this.clickSound = new Audio(soundEffect);
     this.clickSound.play();
   }
@@ -33,9 +30,7 @@ class Circle extends React.Component<CircleProps> {
 
   autoUntick() {
     if (this.props.lives > 0) {
-      // this.props.decrementLives(this.props.lives);
       this.props.autoRemove(this.props.position);
-      console.log('autountick');
     }
   }
 

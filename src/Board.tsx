@@ -2,15 +2,17 @@ import React from 'react';
 import Circle from './Circle';
 import GameOver from './GameOver';
 import './Board.css';
-const uuid = require('uuid/v4');
+import { v4 as uuid } from 'uuid';
 
 type BoardProps = {
   score: number;
   lives: number;
+  decrementLives: (lives: number) => void; 
+  incrementScore: (score: number) => void;
 };
 
 type BoardState = {
-  onBoard: string[];
+  onBoard: (string | string[])[];
   circlePositions: string[];
   gameOver: boolean;
 };
@@ -50,6 +52,7 @@ class Board extends React.PureComponent<BoardProps, BoardState> {
     if (this.state.circlePositions.length > 0 && this.props.lives > 0 && this.state.onBoard.length < 3) {
       let shiftedCirclePositions = [...this.state.circlePositions.slice(1)]
       let next = [uuid(), this.state.circlePositions[0]];
+      
       this.setState({
         onBoard: [...this.state.onBoard, next],
         circlePositions: shiftedCirclePositions
@@ -105,7 +108,7 @@ class Board extends React.PureComponent<BoardProps, BoardState> {
         {this.state.onBoard.map(([uuid, position]) => <Circle key={uuid}
           position={position} click={(clickedId: string) => this.userRemoveFromBoard(clickedId)}
           autoRemove={(circleToAutoRemove: string) => this.autoRemoveFromBoard(circleToAutoRemove)}
-          lives={this.props.lives} decrementLives={(lives: number) => this.props.decrementLives(lives)} />)}
+          lives={this.props.lives} />)}
         {this.state.gameOver ||
           (this.state.onBoard.length === 0 && this.state.circlePositions.length === 0)
           ? <GameOver score={this.props.score} /> : ''}

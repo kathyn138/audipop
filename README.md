@@ -18,7 +18,7 @@ Beta version is [available to play on Heroku](https://audipop-test.herokuapp.com
 - [x] Fix score text placement
 - [x] Add "Play Again?" button to end screen
 - [ ] Add indicator when player loses a life 
-- [ ] Incorporate TypeScript
+- [x] Incorporate TypeScript
 
 ## Future Implementation 
 - Backend

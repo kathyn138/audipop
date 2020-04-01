@@ -4,8 +4,7 @@ import Score from './Score';
 import Lives from './Lives';
 import CountDown from './CountDown';
 import './Game.css';
-import music from './assets/thegreatest.mp3'
-import { number } from 'prop-types';
+import music from './assets/thegreatest.mp3';
 
 type GameState = {
   score: number;
@@ -33,8 +32,9 @@ class Game extends React.Component<{}, GameState> {
       1000
       );
     
+    // potential refactor
     // can move this to constructor 
-    // to avoid having it be optional at ts declaration
+    // to avoid having it be optional at TS declaration
     this.gameSong = new Audio(music);
     this.gameSong.play();
   }
