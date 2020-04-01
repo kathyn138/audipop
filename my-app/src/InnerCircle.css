@@ -1,0 +1,23 @@
+.inner-circle { 
+    position: relative;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.innerCircle-appear {
+    box-shadow: inset 0px 0px 0px 0px black, inset 0 0 0px 0px white;
+}
+.innerCircle-appear.innerCircle-appear-active {
+    box-shadow: inset 0px 0px 0px 49px black, inset 0px 0px 0px 50px white;
+    transition: box-shadow 1.3s;
+    transition-delay: .3s;
+}
+.innerCircle-leave {
+    opacity: 1;
+}
+.innerCircle-leave.example-leave-active {
+    opacity: 1;
+    transition: opacity 1s;
+}
+/* transition shorthand overwrites transition-delay to 0s */
+/* so either write it at bottom or specify in shorthand */

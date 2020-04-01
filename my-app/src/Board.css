@@ -1,0 +1,10 @@
+.board {
+    position: relative;
+    overflow: auto;
+    margin: 0 auto;
+    /* width: 55%; */
+    height: 80vh;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap
+}
