@@ -20,7 +20,7 @@ class GameOver extends React.Component<GameOverProps> {
         <h3>Your score: {this.props.score}</h3>
         <p><button onClick={this.startOver}>Play Again?</button></p>
       </div>
-    )
+    );
   }
 }
 
